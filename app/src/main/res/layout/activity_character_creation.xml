@@ -50,15 +50,15 @@
     <ScrollView
         android:id="@+id/scr_charCreation"
         android:layout_width="410dp"
-        android:layout_height="550dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="460dp"
+        android:layout_marginTop="167dp"
         android:clipToPadding="true"
         android:fillViewport="true"
         android:scrollbarStyle="insideOverlay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_charName"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
@@ -236,5 +236,17 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_charName"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

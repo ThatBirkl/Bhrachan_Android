@@ -26,4 +26,8 @@
     <string name="skill_staff">Staff</string>
 
     <string name="ok">OK</string>
+
+    <string-array name="races">
+        <item>Human</item>
+    </string-array>
 </resources>
