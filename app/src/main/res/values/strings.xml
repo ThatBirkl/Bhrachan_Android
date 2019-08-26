@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Bhráchan</string>
+
+    <string name="skill_arcane">Arcane</string>
+    <string name="skill_medical">Medical</string>
+    <string name="skill_flora">Flora</string>
+    <string name="skill_fauna">Fauna</string>
+    <string name="skill_lore">History/Legends</string>
+
+    <string name="skill_manipulation">Manipulation</string>
+    <string name="skill_restoration">Restoration</string>
+    <string name="skill_materialization">Materialization</string>
+    <string name="skill_ritual">Ritual Casting</string>
+    <string name="skill_instant">Instant Casting</string>
+
+    <string name="skill_instincts">Instincts</string>
+    <string name="skill_lockpicking">Lockpicking</string>
+    <string name="skill_cooking">Cooking</string>
+    <string name="skill_alchemy">Alchemy</string>
+    <string name="skill_crafting">Crafting</string>
+
+    <string name="skill_bow">Bow</string>
+    <string name="skill_sword">Sword</string>
+    <string name="skill_axe">Axe</string>
+    <string name="skill_shield">Shield</string>
+    <string name="skill_staff">Staff</string>
+
+    <string name="ok">OK</string>
+</resources>

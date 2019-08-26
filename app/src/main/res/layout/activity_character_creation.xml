@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CharacterCreationActivity">
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="75dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginLeft="252dp"
+        android:text="@string/ok"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/edt_charName"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <TextView
+        android:id="@+id/lbl_skillPoints"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/scr_charCreation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintStart_toEndOf="@+id/edt_charName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <ScrollView
+        android:id="@+id/scr_charCreation"
+        android:layout_width="410dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="5dp"
+        android:clipToPadding="true"
+        android:fillViewport="true"
+        android:scrollbarStyle="insideOverlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_charName"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lbl_knowledge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+++++ Knowledge +++++"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_arcane"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_arcane"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_fauna"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_fauna"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_flora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_flora"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_lore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_lore"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_medical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_medical"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/lbl_magic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+++++ Magic +++++"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_manipulation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_manipulation"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_materialization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_materialization"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_restoration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_restoration"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_instant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_instant"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_ritual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_ritual"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/lbl_nonCombat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+++++ Non Combat +++++"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_alchemy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_alchemy"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_cooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_cooking"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_crafting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_crafting"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_instincts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_instincts"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_lockpicking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_lockpicking"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/lbl_combat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+++++ Combat +++++"
+                android:textSize="20sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_axe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_axe"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_bow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_bow"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_shield"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_shield"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_staff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_staff"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/chk_skill_sword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/skill_sword"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
