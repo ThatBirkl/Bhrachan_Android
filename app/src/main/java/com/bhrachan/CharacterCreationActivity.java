@@ -13,6 +13,10 @@ import android.widget.TextView;
 
 import com.bhrachan.Abilities.Ability;
 import com.bhrachan.Abilities.aClawSlash;
+import com.bhrachan.Items.Dagger;
+import com.bhrachan.Items.Hat;
+import com.bhrachan.Items.Pants;
+import com.bhrachan.Items.Shirt;
 
 public class CharacterCreationActivity extends AppCompatActivity
 {
@@ -87,6 +91,7 @@ public class CharacterCreationActivity extends AppCompatActivity
 
     private void SetRaceOnPlayer()
     {
+        //TODO give all boni to the races
         Spinner cmb_race = (Spinner)findViewById(R.id.cmb_race);
         String race = cmb_race.getSelectedItem().toString();
 
@@ -94,37 +99,59 @@ public class CharacterCreationActivity extends AppCompatActivity
 
         if(race.equals("Avian"))
         {
+            //positive
+            Player.SetED(A.eDice.d6);
             Player.SetRace(A.eRace.Avian);
         }
         else if(race.equals("Centaur"))
         {
+            //positive
+            //negative
             Player.SetRace(A.eRace.Centaur);
         }
         else if(race.equals("Dwarf"))
         {
+            //positive
+            //negative
             Player.SetRace(A.eRace.Dwarf);
         }
         else if(race.equals("Elf"))
         {
             Player.AddActiveAbility(new aClawSlash());
+            //negative
             Player.SetRace(A.eRace.Elf);
         }
         else if(race.equals("Felin"))
         {
+            Player.SetED(A.eDice.d8);
+            //negative
             Player.SetRace(A.eRace.Felin);
         }
         else if(race.equals("Human"))
         {
+            Player.IncrementSkillLevel(UTIL.GetRandomSkill());
+            //negative
             Player.SetRace(A.eRace.Human);
         }
         else if(race.equals("Lacertan"))
         {
+            //positive
+            //negative
             Player.SetRace(A.eRace.Lacertan);
         }
         else if(race.equals("Orc"))
         {
+            Player.IncrementSkillLevel(A.eSkills.Constitution);
+            //negative
             Player.SetRace(A.eRace.Orc);
         }
+    }
+
+    private void SetEquipmentOnPlayer()
+    {
+        Player.EquipPrimaryWeapon(new Dagger());
+        Player.EquipShirt(new Shirt("Linen Shirt","Just a simple shirt made from linen."));
+        Player.EquipPants(new Pants("Linen Pants", "Just a regular pair of pants made from linen."));
     }
 
     @Override
@@ -148,6 +175,7 @@ public class CharacterCreationActivity extends AppCompatActivity
                     Player.Init();
                     SetStatsOnPlayer();
                     SetRaceOnPlayer();
+                    SetEquipmentOnPlayer();
                 }
                 else
                 {
@@ -163,7 +191,15 @@ public class CharacterCreationActivity extends AppCompatActivity
 
                 if(checked)
                 {
-                    CheckSkill();
+                    if(skillPointsLeft == 0)
+                    {
+                        ((CheckBox) view).setChecked(false);
+                    }
+                    else
+                    {
+                        CheckSkill();
+                    }
+
                 }
                 else
                 {

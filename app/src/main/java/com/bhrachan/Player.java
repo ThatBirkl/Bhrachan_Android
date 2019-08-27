@@ -1,8 +1,13 @@
 package com.bhrachan;
 
-import com.bhrachan.Abilities.Ability;
 import com.bhrachan.Abilities.ActiveAbility;
 import com.bhrachan.Abilities.PassiveAbility;
+import com.bhrachan.Items.Boots;
+import com.bhrachan.Items.Hat;
+import com.bhrachan.Items.Item;
+import com.bhrachan.Items.Pants;
+import com.bhrachan.Items.Shirt;
+import com.bhrachan.Items.Weapon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +30,15 @@ public class Player
     private static ArrayList<ActiveAbility> activeAbilities;
     private static ArrayList<PassiveAbility> passiveAbilities;
 
+    private static ArrayList<Item> inventory;
+
+    private static Weapon mainHand;
+    private static Weapon offHand;
+    private static Hat hat;
+    private static Shirt shirt;
+    private static Pants pants;
+    private static Boots boots;
+
     public static void Init()
     {
         name = new String();
@@ -35,6 +49,8 @@ public class Player
 
         activeAbilities = new ArrayList<ActiveAbility>();
         passiveAbilities = new ArrayList<PassiveAbility>();
+
+        inventory = new ArrayList<Item>();
 
         skillLvl = new HashMap<A.eSkills, Integer>();
         skillLvl.put(A.eSkills.Alchemy, 0);
@@ -143,5 +159,113 @@ public class Player
     public static void AddPassiveAbility(PassiveAbility _ability)
     {
         passiveAbilities.add(_ability);
+    }
+
+    public static void EquipPrimaryWeapon(Weapon _weapon)
+    {
+        if(_weapon.IsTwoHanded())
+        {
+            if(mainHand != null)
+                inventory.add(mainHand);
+
+            if(offHand != null)
+                inventory.add(offHand);
+
+            mainHand = _weapon;
+            offHand = _weapon;
+        }
+        else
+        {
+            if(mainHand != null)
+            {
+                inventory.add(mainHand);
+                mainHand = _weapon;
+
+                if(mainHand.IsTwoHanded())
+                    offHand = null;
+
+            }
+            else
+            {
+                mainHand = _weapon;
+            }
+        }
+    }
+
+    public static void EquipSecondaryWeapon(Weapon _weapon)
+    {
+        if(_weapon.IsTwoHanded())
+        {
+            if(mainHand != null)
+                inventory.add(mainHand);
+
+            if(offHand != null)
+                inventory.add(offHand);
+
+            mainHand = _weapon;
+            offHand = _weapon;
+        }
+        else
+        {
+            if(offHand != null)
+            {
+                inventory.add(offHand);
+                offHand = _weapon;
+
+                if(offHand.IsTwoHanded())
+                    mainHand = null;
+
+            }
+            else
+            {
+                offHand = _weapon;
+            }
+        }
+    }
+
+    public static void EquipHat(Hat _hat)
+    {
+        if(hat != null)
+            inventory.add(hat);
+
+        hat = _hat;
+    }
+
+    public static void EquipShirt(Shirt _shirt)
+    {
+        if(shirt != null)
+            inventory.add(shirt);
+
+        shirt = _shirt;
+    }
+
+    public static void EquipPants(Pants _pants)
+    {
+        if(pants != null)
+            inventory.add(pants);
+
+        pants = _pants;
+    }
+
+    public static void EquipBoots(Boots _boots)
+    {
+        if(boots != null)
+            inventory.add(boots);
+
+        boots = _boots;
+    }
+
+    public static void SetHD(A.eDice _dice)
+    {
+        HD = _dice;
+        maxHP = Dice.GetMaxValue(_dice);
+        currentHP = maxHP;
+    }
+
+    public static void SetED(A.eDice _dice)
+    {
+        ED = _dice;
+        maxEnergy = Dice.GetMaxValue(_dice);
+        currentEnergy = maxEnergy;
     }
 }

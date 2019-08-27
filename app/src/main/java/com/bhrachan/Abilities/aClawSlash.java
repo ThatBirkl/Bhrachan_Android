@@ -8,9 +8,7 @@ public class aClawSlash extends AttackAbility
 {
     public aClawSlash()
     {
-        super();
-        damageDice = A.eDice.d4;
-        numDamageDice = 1;
+        super(A.eDice.d4, 1, 0);
         targetLevelMap.put(0, A.eCombatantType.enemy);
     }
 
