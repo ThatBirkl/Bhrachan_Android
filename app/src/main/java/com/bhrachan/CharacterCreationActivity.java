@@ -2,6 +2,8 @@ package com.bhrachan;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bhrachan.Abilities.Ability;
 import com.bhrachan.Abilities.aAlterNextTurnTime;
@@ -97,8 +100,6 @@ public class CharacterCreationActivity extends AppCompatActivity
         Spinner cmb_race = (Spinner)findViewById(R.id.cmb_race);
         String race = cmb_race.getSelectedItem().toString();
 
-        Log.d("Race", race);
-
         if(race.equals("Avian"))
         {
             Player.AddPassiveAbility(new aAlterNextTurnTime("Quick", "Due to your avian nature you are quicker than other people.",2/3f, A.eCalculator.multiply));
@@ -173,15 +174,35 @@ public class CharacterCreationActivity extends AppCompatActivity
             {
                 if(skillPointsLeft == 0)
                 {
-                    //TODO go to next activity
-                    Player.Init();
-                    SetStatsOnPlayer();
-                    SetRaceOnPlayer();
-                    SetEquipmentOnPlayer();
+                    String name = ((EditText) findViewById(R.id.edt_charName)).getText().toString();
+
+                    if(!name.equals(""))
+                    {
+                        Player.Init();
+                        SetStatsOnPlayer();
+                        SetRaceOnPlayer();
+                        SetEquipmentOnPlayer();
+                        CharacterCreationActivity.this.startActivity(new Intent(getApplicationContext(), CharacterActivity.class));
+                        finish();
+                    }
+                    else
+                    {
+                        Context context = getApplicationContext();
+                        CharSequence text = "You need a name.";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
                 }
                 else
                 {
-                    //TODO output message remaining skill points
+                    Context context = getApplicationContext();
+                    CharSequence text = "Still " + skillPointsLeft + " skill points remaining.";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
                 }
             }
         });

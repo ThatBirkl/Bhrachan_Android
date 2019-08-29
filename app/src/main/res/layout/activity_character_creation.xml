@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".CharacterCreationActivity">
 
     <Button
@@ -27,23 +28,14 @@
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <TextView
-        android:id="@+id/lbl_skillPoints"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/scr_charCreation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.692"
-        app:layout_constraintStart_toEndOf="@+id/edt_charName"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
@@ -71,6 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+++++ Knowledge +++++"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -78,6 +72,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_arcane"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorLink="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -85,6 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_fauna"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -92,6 +91,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_flora"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -99,6 +101,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_lore"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -106,6 +111,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_medical"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorLink="@color/colorAccent"
                 android:textSize="18sp" />
 
             <TextView
@@ -113,6 +121,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+++++ Magic +++++"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -120,6 +130,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_manipulation"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorLink="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -127,6 +140,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_materialization"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -134,6 +150,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_restoration"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -141,6 +160,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_instant"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -148,6 +169,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_ritual"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <TextView
@@ -155,6 +179,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+++++ Non Combat +++++"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -162,6 +189,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_alchemy"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -169,6 +199,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_cooking"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -176,6 +209,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_crafting"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -183,6 +219,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_instincts"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -190,6 +229,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_lockpicking"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorLink="@color/colorAccent"
                 android:textSize="18sp" />
 
             <TextView
@@ -197,6 +239,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+++++ Combat +++++"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -204,6 +249,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_axe"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -211,6 +258,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_bow"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -218,6 +267,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_shield"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -225,6 +276,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_staff"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorLink="@color/colorAccent"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -232,6 +286,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/skill_sword"
+                android:textColor="@color/colorAccent"
+                android:textColorHighlight="@color/colorAccent"
+                android:textColorLink="@color/colorAccent"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -249,5 +306,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_charName"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/lbl_skillPoints"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/scr_charCreation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintStart_toEndOf="@+id/edt_charName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,8 @@
 package com.bhrachan;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class A
 {
 	public enum eSkills
@@ -93,5 +96,68 @@ public class A
     {
         add,
         multiply
+    }
+
+    private static Map<String, Object> images;
+
+	public static void Init()
+    {
+        images = new HashMap<String, Object>();
+    }
+
+    public static void SetImage(String _name, Object _data)
+    {
+        images.put(_name, _data);
+    }
+
+    public static Object GetImage(String _name)
+    {
+        return images.get(_name);
+    }
+
+    public static void DeleteImage(String _name)
+    {
+        images.remove(_name);
+    }
+
+    public static boolean ImageExists(String _name)
+    {
+        return images.containsKey(_name);
+    }
+
+    public static String GetRaceString(A.eRace _race)
+    {
+        String ret = "";
+
+        switch (_race)
+        {
+
+            case Avian:
+                ret = "Avian";
+                break;
+            case Centaur:
+                ret = "Centaur";
+                break;
+            case Dwarf:
+                ret = "Dwarf";
+                break;
+            case Elf:
+                ret = "Elf";
+                break;
+            case Felin:
+                ret = "Felin";
+                break;
+            case Human:
+                ret = "Human";
+                break;
+            case Lacertan:
+                ret = "Lacertan";
+                break;
+            case Orc:
+                ret = "Orc";
+                break;
+        }
+
+        return ret;
     }
 }

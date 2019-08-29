@@ -268,4 +268,9 @@ public class Player
         maxEnergy = Dice.GetMaxValue(_dice);
         currentEnergy = maxEnergy;
     }
+
+    public static A.eRace GetRace()
+    {
+        return race;
+    }
 }
