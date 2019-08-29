@@ -3,6 +3,7 @@ package com.bhrachan;
 import com.bhrachan.Abilities.ActiveAbility;
 import com.bhrachan.Abilities.PassiveAbility;
 import com.bhrachan.Items.Boots;
+import com.bhrachan.Items.Clothing;
 import com.bhrachan.Items.Hat;
 import com.bhrachan.Items.Item;
 import com.bhrachan.Items.Pants;
@@ -272,5 +273,35 @@ public class Player
     public static A.eRace GetRace()
     {
         return race;
+    }
+
+    public static Weapon GetPrimaryWeapon()
+    {
+        return mainHand;
+    }
+
+    public static Weapon GetSecondaryWeapon()
+    {
+        return offHand;
+    }
+
+    public static Clothing GetHat()
+    {
+        return hat;
+    }
+
+    public static Clothing GetShirt()
+    {
+        return shirt;
+    }
+
+    public static Clothing GetPants()
+    {
+        return pants;
+    }
+
+    public static Clothing GetBoots()
+    {
+        return boots;
     }
 }

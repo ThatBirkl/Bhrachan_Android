@@ -4,29 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".CharacterActivity">
+
+    <Button
+        android:id="@+id/btn_primWpn"
+        android:layout_width="180dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="11dp"
+        android:background="@color/colorPrimary"
+        android:text="Button"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_race" />
+
+    <Button
+        android:id="@+id/btn_secWpn"
+        android:layout_width="180dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="11dp"
+        android:background="@color/colorPrimary"
+        android:text="Button"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toEndOf="@+id/btn_primWpn"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_race" />
 
     <TextView
         android:id="@+id/lbl_name"
-        android:layout_width="340dp"
-        android:layout_height="43dp"
+        android:layout_width="380dp"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:text="TextView"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.22"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lbl_race"
-        android:layout_width="340dp"
+        android:layout_width="380dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_name" />
+
+    <Button
+        android:id="@+id/btn_hat"
+        android:layout_width="180dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:text="Button"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_primWpn" />
+
+    <Button
+        android:id="@+id/btn_shirt"
+        android:layout_width="180dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:text="Button"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toEndOf="@+id/btn_hat"
+        app:layout_constraintTop_toBottomOf="@+id/btn_secWpn" />
+
+    <Button
+        android:id="@+id/btn_pants"
+        android:layout_width="180dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:text="Button"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_hat" />
+
+    <Button
+        android:id="@+id/btn_boots"
+        android:layout_width="180dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:text="Button"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_pants"
+        app:layout_constraintTop_toBottomOf="@+id/btn_shirt" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -98,6 +98,14 @@ public class A
         multiply
     }
 
+    public enum eItemType
+    {
+        item,
+        resource,
+        clothing,
+        weapon
+    }
+
     private static Map<String, Object> images;
 
 	public static void Init()

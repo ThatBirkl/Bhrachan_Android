@@ -10,4 +10,14 @@ public abstract class Item
         name = _name;
         description = _description;
     }
+
+    public String GetName()
+    {
+        return name;
+    }
+
+    public String GetDescription()
+    {
+        return description;
+    }
 }
