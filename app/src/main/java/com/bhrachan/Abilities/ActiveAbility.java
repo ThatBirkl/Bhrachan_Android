@@ -2,9 +2,9 @@ package com.bhrachan.Abilities;
 
 public abstract class ActiveAbility extends Ability
 {
-    public ActiveAbility()
+    public ActiveAbility(String _name, String _description)
     {
-        super();
+        super(_name, _description);
         active = true;
     }
 }

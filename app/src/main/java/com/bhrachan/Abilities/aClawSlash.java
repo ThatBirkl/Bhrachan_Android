@@ -8,7 +8,7 @@ public class aClawSlash extends AttackAbility
 {
     public aClawSlash()
     {
-        super(A.eDice.d4, 1, 0);
+        super("Claw Slash", "You use your claws to attack an enemy.", A.eDice.d4, 1, 0);
         targetLevelMap.put(0, A.eCombatantType.enemy);
     }
 

@@ -17,6 +17,9 @@ public class Combatant
     protected A.eDice HD;
     protected A.eDice ED;
     protected A.eRace race;
+    protected int secsOnTimeline;
+    protected int lastAddedSecs;
+    protected int lastHealthManipulation;
 
     protected ArrayList<ActiveAbility> activeAbilities;
     protected ArrayList<PassiveAbility> passiveAbilities;
@@ -39,13 +42,35 @@ public class Combatant
         combatSkills = _combatSkills;
     }
 
-    public void ManipulateHealth(int _value)
+    public void ManipulateHealth(int _value, boolean _useAbilities)
     {
+        lastHealthManipulation = _value;
+
         currentHP += _value;
         if(currentHP >= maxHP)
             currentHP = maxHP;
         else if(currentHP < 0)
             currentHP = 0;
+
+        if(_useAbilities)
+        {
+            for(int i = 0 ; i < passiveAbilities.size(); i++)
+            {
+                if(passiveAbilities.get(i).GetTrigger() == A.eAbilityTrigger.onDamage && _value < 0)
+                {
+                    passiveAbilities.get(i).Effect(0, new Combatant[]{this}, this);
+                }
+                else if(passiveAbilities.get(i).GetTrigger() == A.eAbilityTrigger.onHeal && _value > 0)
+                {
+                    passiveAbilities.get(i).Effect(0, new Combatant[]{this}, this);
+                }
+            }
+        }
+    }
+
+    public void ManipulateHealth(int _value)
+    {
+        ManipulateHealth(_value, true);
     }
 
     public int GetSkill(A.eSkills _skill)
@@ -58,5 +83,61 @@ public class Combatant
         {
             return 0;
         }
+    }
+
+    public void AddSecs(int _secs, boolean _useAbilities)
+    {
+        lastAddedSecs = _secs;
+        secsOnTimeline += _secs;
+        if(_useAbilities)
+        {
+            for(int i = 0 ; i < passiveAbilities.size(); i++)
+            {
+                if(passiveAbilities.get(i).GetTrigger() == A.eAbilityTrigger.onCalculateNewTurn)
+                {
+                    passiveAbilities.get(i).Effect(0, new Combatant[]{this}, this);
+                }
+            }
+        }
+    }
+
+    public void AddSecs(int _secs)
+    {
+        AddSecs(_secs, true);
+    }
+
+    public int GetSecs()
+    {
+        return secsOnTimeline;
+    }
+
+    public int GetLastAddedSecs()
+    {
+        return lastAddedSecs;
+    }
+
+    public int GetLastHealthManipulation()
+    {
+        return lastHealthManipulation;
+    }
+
+    public int GetHP()
+    {
+        return currentHP;
+    }
+
+    public int GetMaxHP()
+    {
+        return maxHP;
+    }
+
+    public int GetEP()
+    {
+        return currentEnergy;
+    }
+
+    public int GetMaxEP()
+    {
+        return maxEnergy;
     }
 }

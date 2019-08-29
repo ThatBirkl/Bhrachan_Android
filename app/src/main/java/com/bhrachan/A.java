@@ -45,7 +45,8 @@ public class A
         onBeginCombat,
         onEndCombat,
         onBeginTurn,
-        onEndTurn
+        onEndTurn,
+        onCalculateNewTurn
     }
 	
 	//used if more than one dice is thrown
@@ -86,5 +87,11 @@ public class A
         x,
         enemy,
         ally
+    }
+
+    public enum eCalculator
+    {
+        add,
+        multiply
     }
 }

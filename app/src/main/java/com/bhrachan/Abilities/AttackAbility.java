@@ -8,14 +8,9 @@ public abstract class AttackAbility extends ActiveAbility
     protected int numDamageDice;
     protected int addDamage;
 
-    public AttackAbility()
+    public AttackAbility(String _name, String _description, A.eDice _damageDice, int _numDamageDice, int _addDamage)
     {
-        super();
-    }
-
-    public AttackAbility(A.eDice _damageDice, int _numDamageDice, int _addDamage)
-    {
-        super();
+        super(_name, _description);
         damageDice = _damageDice;
         numDamageDice = _numDamageDice;
         addDamage = _addDamage;

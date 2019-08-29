@@ -12,7 +12,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bhrachan.Abilities.Ability;
+import com.bhrachan.Abilities.aAlterNextTurnTime;
 import com.bhrachan.Abilities.aClawSlash;
+import com.bhrachan.Abilities.aEscapeDeath;
 import com.bhrachan.Items.Dagger;
 import com.bhrachan.Items.Hat;
 import com.bhrachan.Items.Pants;
@@ -99,20 +101,20 @@ public class CharacterCreationActivity extends AppCompatActivity
 
         if(race.equals("Avian"))
         {
-            //positive
+            Player.AddPassiveAbility(new aAlterNextTurnTime("Quick", "Due to your avian nature you are quicker than other people.",2/3f, A.eCalculator.multiply));
             Player.SetED(A.eDice.d6);
             Player.SetRace(A.eRace.Avian);
         }
         else if(race.equals("Centaur"))
         {
-            //positive
+            Player.SetED(A.eDice.d10);
             //negative
             Player.SetRace(A.eRace.Centaur);
         }
         else if(race.equals("Dwarf"))
         {
-            //positive
-            //negative
+            Player.IncrementSkillLevel(A.eSkills.Strength);
+            Player.AddPassiveAbility(new aAlterNextTurnTime("Slow", "Due to your dwarven nature you are slower than other people.", 4/3f, A.eCalculator.multiply));
             Player.SetRace(A.eRace.Dwarf);
         }
         else if(race.equals("Elf"))
@@ -135,7 +137,7 @@ public class CharacterCreationActivity extends AppCompatActivity
         }
         else if(race.equals("Lacertan"))
         {
-            //positive
+            Player.AddPassiveAbility(new aEscapeDeath(0.1f, A.eCalculator.multiply));
             //negative
             Player.SetRace(A.eRace.Lacertan);
         }
