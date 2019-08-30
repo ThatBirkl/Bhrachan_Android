@@ -45,7 +45,7 @@ public class CharacterActivity extends AppCompatActivity
             {
                 A.SetImage("type", A.eItemType.weapon);
                 A.SetImage("item", prim);
-                //TODO open activity and load the data there
+                CharacterActivity.this.startActivity(new Intent(getApplicationContext(), ItemActivity.class));
             }
         });
 

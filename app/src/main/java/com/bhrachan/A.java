@@ -1,5 +1,9 @@
 package com.bhrachan;
 
+import android.util.Log;
+
+import com.bhrachan.Items.Item;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -166,6 +170,26 @@ public class A
                 break;
         }
 
+        return ret;
+    }
+
+    public static String GetItemArt(Item _item)
+    {
+        String ret = "";
+        String itemClass = _item.getClass().toString();
+        Log.d("Item", itemClass);
+        if(itemClass.equals("class com.bhrachan.Items.Sword"))
+        {
+            ret =   "            /| ________________________\n" +
+                    "O|===|* >________________________>\n" +
+                    "           \\|";
+        }
+        else if(itemClass.equals("class com.bhrachan.Items.Dagger"))
+        {
+            ret = "            /| ____________\n" +
+                     "O|===|* >____________>\n" +
+                    "            \\|";
+        }
         return ret;
     }
 }
