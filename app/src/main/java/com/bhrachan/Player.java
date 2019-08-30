@@ -7,8 +7,10 @@ import com.bhrachan.Items.Clothing;
 import com.bhrachan.Items.Hat;
 import com.bhrachan.Items.Item;
 import com.bhrachan.Items.Pants;
+import com.bhrachan.Items.Shield;
 import com.bhrachan.Items.Shirt;
 import com.bhrachan.Items.Weapon;
+import com.bhrachan.Tokens.Token;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +32,7 @@ public class Player
 
     private static ArrayList<ActiveAbility> activeAbilities;
     private static ArrayList<PassiveAbility> passiveAbilities;
+    private static ArrayList<Token> tokens;
 
     private static ArrayList<Item> inventory;
 
@@ -50,6 +53,7 @@ public class Player
 
         activeAbilities = new ArrayList<ActiveAbility>();
         passiveAbilities = new ArrayList<PassiveAbility>();
+        tokens = new ArrayList<Token>();
 
         inventory = new ArrayList<Item>();
 
@@ -303,5 +307,52 @@ public class Player
     public static Clothing GetBoots()
     {
         return boots;
+    }
+
+    /*
+    * @return returns AC of 10 + equipment AC
+    * */
+    public static int GetAC()
+    {
+        int ret = 10;
+
+        if(offHand.getClass().equals("class com.bhrachan.Items.Shield"))
+            ret += ((Shield)offHand).GetAC();
+        if(hat != null)
+            ret += hat.GetAC();
+        if(shirt != null)
+            ret += shirt.GetAC();
+        if(pants != null)
+            ret += pants.GetAC();
+        if(boots != null)
+            ret += boots.GetAC();
+
+        return ret;
+    }
+
+    public static int GetFullAC()
+    {
+        int ret = GetAC();
+        for(int i = 0 ; i < tokens.size(); i++)
+        {
+            if(tokens.get(i).GetType() == A.eTokenType.AC)
+            {
+                ret += (int)tokens.get(i).Value();
+            }
+        }
+        ret += GetSkill(A.eSkills.Constitution);
+
+        return ret;
+    }
+
+    public static void LvlUp()
+    {
+        int HP = Dice.Roll(HD, 1, A.eDiceMode.add);
+        maxHP += HP;
+        currentHP += HP;
+
+        int EP = Dice.Roll(ED, 1, A.eDiceMode.add);
+        maxEnergy += EP;
+        currentEnergy += EP;
     }
 }

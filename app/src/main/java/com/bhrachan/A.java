@@ -110,6 +110,11 @@ public class A
         weapon
     }
 
+    public enum eTokenType
+    {
+        AC
+    }
+
     private static Map<String, Object> images;
 
 	public static void Init()
@@ -189,6 +194,23 @@ public class A
             ret = "            /| ____________\n" +
                      "O|===|* >____________>\n" +
                     "            \\|";
+        }
+        else if(itemClass.equals("class com.bhrachan.Items.Axe"))
+        {
+            ret =   " _   _\n" +
+                    "/ \\|/ \\\n" +
+                    "\\_/|\\_/\n" +
+                    "   |\n" +
+                    "   |\n" +
+                    "   |";
+        }
+        else if(itemClass.equals("class com.bhrachan.Items.Shield"))
+        {
+            ret =   "|`\\_/\\_/`|\n" +
+                    "|__(<>)__|\n" +
+                    "\\   ||   /\n" +
+                    " \\  ||  /\n" +
+                    "  '.||.'";
         }
         return ret;
     }

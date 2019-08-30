@@ -18,4 +18,9 @@ public abstract class Clothing extends Equipment
         passiveAbilities = _passiveAbilities;
         activeAbilities = _activeAbilities;
     }
+
+    public int GetAC()
+    {
+        return AC;
+    }
 }
