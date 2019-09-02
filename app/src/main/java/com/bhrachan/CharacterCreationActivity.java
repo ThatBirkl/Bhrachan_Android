@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,7 +13,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bhrachan.Abilities.Ability;
 import com.bhrachan.Abilities.aAlterNextTurnTime;
 import com.bhrachan.Abilities.aClawSlash;
 import com.bhrachan.Abilities.aEscapeDeath;
@@ -157,6 +155,138 @@ public class CharacterCreationActivity extends AppCompatActivity
         Player.EquipPants(new Pants("Linen Pants", "Just a regular pair of pants made from linen."));
     }
 
+    private void InsertPlayerInDB()
+    {
+        String[] columns = DB.GetNames("CHARACTER");
+        String[] values = { "" + Player.GetId(),
+                            "" + Player.GetCurrentHP(),
+                            "" + Player.GetMaxHP(),
+                            "" + Player.GetCurrentEP(),
+                            "" + Player.GetMaxEP(),
+                            "" + A.GetRaceInt(Player.GetRace()),
+                            "" + Player.GetName(),
+                            "" + A.GetDiceInt(Player.GetHD()),
+                            "" + A.GetDiceInt(Player.GetED()),
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "" + 0};
+        DB.Insert("CHARACTER", columns, values);
+
+        columns = DB.GetNames("SKILL");
+        String[][][] statements = new String[26][4][columns.length];
+
+        statements[0][0][0] = "SKILL";
+        statements[0][1] = columns;
+        statements[0][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Axe), "" + Player.GetSkill(A.eSkills.Axe), "" + Player.GetSkill(A.eSkills.Axe)};
+
+        statements[1][0][0] = "SKILL";
+        statements[1][1] = columns;
+        statements[1][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Arcane), "" + Player.GetSkill(A.eSkills.Arcane), "" + Player.GetSkill(A.eSkills.Arcane)};
+
+        statements[2][0][0] = "SKILL";
+        statements[2][1] = columns;
+        statements[2][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Alchemy), "" + Player.GetSkill(A.eSkills.Alchemy), "" + Player.GetSkill(A.eSkills.Alchemy)};
+
+        statements[3][0][0] = "SKILL";
+        statements[3][1] = columns;
+        statements[3][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Bow), "" + Player.GetSkill(A.eSkills.Bow), "" + Player.GetSkill(A.eSkills.Bow)};
+
+        statements[4][0][0] = "SKILL";
+        statements[4][1] = columns;
+        statements[4][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Constitution), "" + Player.GetSkill(A.eSkills.Constitution), "" + Player.GetSkill(A.eSkills.Constitution)};
+
+        statements[5][0][0] = "SKILL";
+        statements[5][1] = columns;
+        statements[5][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Crafting), "" + Player.GetSkill(A.eSkills.Crafting), "" + Player.GetSkill(A.eSkills.Crafting)};
+
+        statements[6][0][0] = "SKILL";
+        statements[6][1] = columns;
+        statements[6][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Cooking), "" + Player.GetSkill(A.eSkills.Cooking), "" + Player.GetSkill(A.eSkills.Cooking)};
+
+        statements[7][0][0] = "SKILL";
+        statements[7][1] = columns;
+        statements[7][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Dexterity), "" + Player.GetSkill(A.eSkills.Dexterity), "" + Player.GetSkill(A.eSkills.Dexterity)};
+
+        statements[8][0][0] = "SKILL";
+        statements[8][1] = columns;
+        statements[8][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Flora), "" + Player.GetSkill(A.eSkills.Flora), "" + Player.GetSkill(A.eSkills.Flora)};
+
+        statements[9][0][0] = "SKILL";
+        statements[9][1] = columns;
+        statements[9][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Fauna), "" + Player.GetSkill(A.eSkills.Fauna), "" + Player.GetSkill(A.eSkills.Fauna)};
+
+        statements[10][0][0] = "SKILL";
+        statements[10][1] = columns;
+        statements[10][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Instincts), "" + Player.GetSkill(A.eSkills.Instincts), "" + Player.GetSkill(A.eSkills.Instincts)};
+
+
+        statements[11][0][0] = "SKILL";
+        statements[11][1] = columns;
+        statements[11][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Instantanious), "" + Player.GetSkill(A.eSkills.Instantanious), "" + Player.GetSkill(A.eSkills.Instantanious)};
+
+        statements[12][0][0] = "SKILL";
+        statements[12][1] = columns;
+        statements[12][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Intelligence), "" + Player.GetSkill(A.eSkills.Intelligence), "" + Player.GetSkill(A.eSkills.Intelligence)};
+
+        statements[13][0][0] = "SKILL";
+        statements[13][1] = columns;
+        statements[13][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Lore), "" + Player.GetSkill(A.eSkills.Lore), "" + Player.GetSkill(A.eSkills.Lore)};
+
+        statements[14][0][0] = "SKILL";
+        statements[14][1] = columns;
+        statements[14][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Lockpicking), "" + Player.GetSkill(A.eSkills.Lockpicking), "" + Player.GetSkill(A.eSkills.Lockpicking)};
+
+        statements[15][0][0] = "SKILL";
+        statements[15][1] = columns;
+        statements[15][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Medicine), "" + Player.GetSkill(A.eSkills.Medicine), "" + Player.GetSkill(A.eSkills.Medicine)};
+
+        statements[16][0][0] = "SKILL";
+        statements[16][1] = columns;
+        statements[16][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Materialization), "" + Player.GetSkill(A.eSkills.Materialization), "" + Player.GetSkill(A.eSkills.Materialization)};
+
+        statements[17][0][0] = "SKILL";
+        statements[17][1] = columns;
+        statements[17][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Manipulation), "" + Player.GetSkill(A.eSkills.Manipulation), "" + Player.GetSkill(A.eSkills.Manipulation)};
+
+        statements[18][0][0] = "SKILL";
+        statements[18][1] = columns;
+        statements[18][2] = new String[]{"" + A.GetSkillInt(A.eSkills.MagicProwess), "" + Player.GetSkill(A.eSkills.MagicProwess), "" + Player.GetSkill(A.eSkills.MagicProwess)};
+
+        statements[19][0][0] = "SKILL";
+        statements[19][1] = columns;
+        statements[19][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Ritual), "" + Player.GetSkill(A.eSkills.Ritual), "" + Player.GetSkill(A.eSkills.Ritual)};
+
+        statements[20][0][0] = "SKILL";
+        statements[20][1] = columns;
+        statements[20][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Restoration), "" + Player.GetSkill(A.eSkills.Restoration), "" + Player.GetSkill(A.eSkills.Restoration)};
+
+        statements[21][0][0] = "SKILL";
+        statements[21][1] = columns;
+        statements[21][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Sword), "" + Player.GetSkill(A.eSkills.Sword), "" + Player.GetSkill(A.eSkills.Sword)};
+
+        statements[22][0][0] = "SKILL";
+        statements[22][1] = columns;
+        statements[22][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Staff), "" + Player.GetSkill(A.eSkills.Staff), "" + Player.GetSkill(A.eSkills.Staff)};
+
+        statements[23][0][0] = "SKILL";
+        statements[23][1] = columns;
+        statements[23][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Shield), "" + Player.GetSkill(A.eSkills.Shield), "" + Player.GetSkill(A.eSkills.Shield)};
+
+        statements[24][0][0] = "SKILL";
+        statements[24][1] = columns;
+        statements[24][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Strength), "" + Player.GetSkill(A.eSkills.Strength), "" + Player.GetSkill(A.eSkills.Strength)};
+
+        statements[25][0][0] = "SKILL";
+        statements[25][1] = columns;
+        statements[25][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Social), "" + Player.GetSkill(A.eSkills.Social), "" + Player.GetSkill(A.eSkills.Social)};
+
+        DB.InsertMultiple(statements);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -182,6 +312,7 @@ public class CharacterCreationActivity extends AppCompatActivity
                         SetStatsOnPlayer();
                         SetRaceOnPlayer();
                         SetEquipmentOnPlayer();
+                        InsertPlayerInDB();
                         CharacterCreationActivity.this.startActivity(new Intent(getApplicationContext(), CharacterActivity.class));
                         finish();
                     }

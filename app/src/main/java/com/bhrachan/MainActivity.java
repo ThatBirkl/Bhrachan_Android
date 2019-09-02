@@ -22,6 +22,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         A.Init();
+        DB.Init(this);
+
+        //TODO remove this again once the creation is complete
+        DB.Delete("CHARACTER", "CHARACTERID = 'test_id_replace'");
+        DB.Delete("SKILL", "1 = 1");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

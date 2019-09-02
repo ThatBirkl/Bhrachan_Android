@@ -1,5 +1,7 @@
 package com.bhrachan;
 
+import android.os.HardwarePropertiesManager;
+
 import com.bhrachan.Abilities.ActiveAbility;
 import com.bhrachan.Abilities.PassiveAbility;
 import com.bhrachan.Items.Boots;
@@ -14,10 +16,12 @@ import com.bhrachan.Tokens.Token;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Player
 {
+    private static String id;
     private static String name;
     private static int currentHP;
     private static int maxHP;
@@ -28,7 +32,7 @@ public class Player
     private static A.eRace race;
 
     private static Map<A.eSkills, Integer> skillLvl;
-    private static Map<A.eSkills, Integer> skillProgress;
+    private static Map<A.eSkills, Float> skillProgress;
 
     private static ArrayList<ActiveAbility> activeAbilities;
     private static ArrayList<PassiveAbility> passiveAbilities;
@@ -45,6 +49,7 @@ public class Player
 
     public static void Init()
     {
+        id = "test_id_replace"; //TODO UTIL.GetUUID();
         name = new String();
         HD = A.eDice.d8;
         ED = A.eDice.d6;
@@ -85,37 +90,43 @@ public class Player
         skillLvl.put(A.eSkills.Strength, 0);
         skillLvl.put(A.eSkills.Sword, 0);
 
-        skillProgress = new HashMap<A.eSkills, Integer>();
-        skillProgress.put(A.eSkills.Alchemy, 0);
-        skillProgress.put(A.eSkills.Arcane, 0);
-        skillProgress.put(A.eSkills.Axe, 0);
-        skillProgress.put(A.eSkills.Bow, 0);
-        skillProgress.put(A.eSkills.Constitution, 0);
-        skillProgress.put(A.eSkills.Cooking, 0);
-        skillProgress.put(A.eSkills.Crafting, 0);
-        skillProgress.put(A.eSkills.Dexterity, 0);
-        skillProgress.put(A.eSkills.Fauna, 0);
-        skillProgress.put(A.eSkills.Flora, 0);
-        skillProgress.put(A.eSkills.Instantanious, 0);
-        skillProgress.put(A.eSkills.Instincts, 0);
-        skillProgress.put(A.eSkills.Intelligence, 0);
-        skillProgress.put(A.eSkills.Lockpicking, 0);
-        skillProgress.put(A.eSkills.Lore, 0);
-        skillProgress.put(A.eSkills.MagicProwess, 0);
-        skillProgress.put(A.eSkills.Manipulation, 0);
-        skillProgress.put(A.eSkills.Materialization, 0);
-        skillProgress.put(A.eSkills.Medicine, 0);
-        skillProgress.put(A.eSkills.Restoration, 0);
-        skillProgress.put(A.eSkills.Ritual, 0);
-        skillProgress.put(A.eSkills.Shield, 0);
-        skillProgress.put(A.eSkills.Social, 0);
-        skillProgress.put(A.eSkills.Staff, 0);
-        skillProgress.put(A.eSkills.Strength, 0);
-        skillProgress.put(A.eSkills.Sword, 0);
+        skillProgress = new HashMap<A.eSkills, Float>();
+        skillProgress.put(A.eSkills.Alchemy, 0f);
+        skillProgress.put(A.eSkills.Arcane, 0f);
+        skillProgress.put(A.eSkills.Axe, 0f);
+        skillProgress.put(A.eSkills.Bow, 0f);
+        skillProgress.put(A.eSkills.Constitution, 0f);
+        skillProgress.put(A.eSkills.Cooking, 0f);
+        skillProgress.put(A.eSkills.Crafting, 0f);
+        skillProgress.put(A.eSkills.Dexterity, 0f);
+        skillProgress.put(A.eSkills.Fauna, 0f);
+        skillProgress.put(A.eSkills.Flora, 0f);
+        skillProgress.put(A.eSkills.Instantanious, 0f);
+        skillProgress.put(A.eSkills.Instincts, 0f);
+        skillProgress.put(A.eSkills.Intelligence, 0f);
+        skillProgress.put(A.eSkills.Lockpicking, 0f);
+        skillProgress.put(A.eSkills.Lore, 0f);
+        skillProgress.put(A.eSkills.MagicProwess, 0f);
+        skillProgress.put(A.eSkills.Manipulation, 0f);
+        skillProgress.put(A.eSkills.Materialization, 0f);
+        skillProgress.put(A.eSkills.Medicine, 0f);
+        skillProgress.put(A.eSkills.Restoration, 0f);
+        skillProgress.put(A.eSkills.Ritual, 0f);
+        skillProgress.put(A.eSkills.Shield, 0f);
+        skillProgress.put(A.eSkills.Social, 0f);
+        skillProgress.put(A.eSkills.Staff, 0f);
+        skillProgress.put(A.eSkills.Strength, 0f);
+        skillProgress.put(A.eSkills.Sword, 0f);
+    }
+
+    public static String GetId()
+    {
+        return id;
     }
 
     public static void SetName(String _name)
     {
+        DB.Update("CHARACTER", new String[]{"NAME"}, new String[]{_name}, "CHARACTERID = '" + id + "'");
         name = _name;
     }
 
@@ -126,6 +137,7 @@ public class Player
 
     public static void SetSkill(A.eSkills _skill, int _value)
     {
+        DB.Update("SKILL", new String[]{"LEVEL"}, new String[]{"" + _value}, "SKILLID = " + A.GetSkillInt(_skill));
         skillLvl.put(_skill, _value);
     }
 
@@ -134,11 +146,23 @@ public class Player
         return skillLvl.get(_skill);
     }
 
+    public static float GetSkillProgress(A.eSkills _skill)
+    {
+        return skillProgress.get(_skill);
+    }
+
+    public static void SetSkillProgress(A.eSkills _skill, float _value)
+    {
+        DB.Update("SKILL", new String[]{"PROGRESS"}, new String[]{"" + _value}, "SKILLID = " + A.GetSkillInt(_skill));
+        skillProgress.put(_skill, 0f);
+    }
+
     public static void IncrementSkillLevel(A.eSkills _skill, int _amount, boolean _clearProgress)
     {
-        skillLvl.put(_skill, GetSkill(_skill) + _amount);
+        SetSkill(_skill, GetSkill(_skill) + _amount);
+
         if(_clearProgress)
-            skillProgress.put(_skill, 0);
+            SetSkillProgress(_skill, 0f);
     }
 
     public static void IncrementSkillLevel(A.eSkills _skill, boolean _clearProgress)
@@ -153,6 +177,7 @@ public class Player
 
     public static void SetRace(A.eRace _race)
     {
+        DB.Update("CHARACTER", new String[]{"RACE"}, new String[]{""+A.GetRaceInt(_race)}, "CHARACTERID = '" + id + "'");
         race = _race;
     }
 
@@ -171,27 +196,43 @@ public class Player
         if(_weapon.IsTwoHanded())
         {
             if(mainHand != null)
+            {
                 inventory.add(mainHand);
+                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + mainHand.GetId() + "'");
+            }
+
 
             if(offHand != null)
+            {
                 inventory.add(offHand);
+                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + offHand.GetId() + "'");
+            }
+
 
             mainHand = _weapon;
             offHand = _weapon;
+            DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"true"}, "ITEMID = '" + _weapon.GetId() + "'");
+            DB.Update("CHARACTER", new String[]{"MAINHAND"}, new String[]{_weapon.GetId()}, "CHARACTERID = '" + id + "'");
         }
         else
         {
             if(mainHand != null)
             {
+                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + mainHand.GetId() + "'");
                 inventory.add(mainHand);
-                mainHand = _weapon;
 
                 if(mainHand.IsTwoHanded())
+                {
                     offHand = null;
+                    DB.Update("CHARACTER", new String[]{"OFFHAND"}, new String[]{null}, "CHARACTERID = '" + id + "'");
+                }
 
+                mainHand = _weapon;
+                DB.Update("CHARACTER", new String[]{"MAINHAND"}, new String[]{_weapon.GetId()}, "CHARACTERID = '" + id + "'");
             }
             else
             {
+                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + mainHand.GetId() + "'");
                 mainHand = _weapon;
             }
         }
@@ -354,5 +395,35 @@ public class Player
         int EP = Dice.Roll(ED, 1, A.eDiceMode.add);
         maxEnergy += EP;
         currentEnergy += EP;
+    }
+
+    public static int GetCurrentHP()
+    {
+        return currentHP;
+    }
+
+    public static int GetCurrentEP()
+    {
+        return currentEnergy;
+    }
+
+    public static int GetMaxHP()
+    {
+        return maxHP;
+    }
+
+    public static int GetMaxEP()
+    {
+        return maxEnergy;
+    }
+
+    public static A.eDice GetHD()
+    {
+        return HD;
+    }
+
+    public static A.eDice GetED()
+    {
+        return ED;
     }
 }
