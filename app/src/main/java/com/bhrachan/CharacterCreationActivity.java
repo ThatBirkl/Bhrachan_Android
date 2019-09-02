@@ -150,9 +150,9 @@ public class CharacterCreationActivity extends AppCompatActivity
 
     private void SetEquipmentOnPlayer()
     {
-        Player.EquipPrimaryWeapon(new Dagger());
-        Player.EquipShirt(new Shirt("Linen Shirt","Just a simple shirt made from linen."));
-        Player.EquipPants(new Pants("Linen Pants", "Just a regular pair of pants made from linen."));
+        Player.EquipPrimaryWeapon(new Dagger(), true);
+        Player.EquipShirt(new Shirt("Linen Shirt","Just a simple shirt made from linen."), true);
+        Player.EquipPants(new Pants("Linen Pants", "Just a regular pair of pants made from linen."), true);
     }
 
     private void InsertPlayerInDB()

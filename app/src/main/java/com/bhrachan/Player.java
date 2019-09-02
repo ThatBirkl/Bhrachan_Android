@@ -14,6 +14,7 @@ import com.bhrachan.Items.Shirt;
 import com.bhrachan.Items.Weapon;
 import com.bhrachan.Tokens.Token;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -191,8 +192,11 @@ public class Player
         passiveAbilities.add(_ability);
     }
 
-    public static void EquipPrimaryWeapon(Weapon _weapon)
+    public static void EquipPrimaryWeapon(Weapon _weapon, boolean _addToInv)
     {
+        if(_addToInv)
+            AddToInventory(_weapon);
+
         if(_weapon.IsTwoHanded())
         {
             if(mainHand != null)
@@ -238,8 +242,17 @@ public class Player
         }
     }
 
-    public static void EquipSecondaryWeapon(Weapon _weapon)
+    public static void EquipPrimaryWeapon(Weapon _weapon)
     {
+        EquipPrimaryWeapon(_weapon, false);
+    }
+
+    public static void EquipSecondaryWeapon(Weapon _weapon, boolean _addToInv)
+    {
+        //TODO add database updates like in primary
+        if(_addToInv)
+            AddToInventory(_weapon);
+
         if(_weapon.IsTwoHanded())
         {
             if(mainHand != null)
@@ -269,36 +282,77 @@ public class Player
         }
     }
 
-    public static void EquipHat(Hat _hat)
+    public static void EquipSecondaryWeapon(Weapon _weapon)
     {
+        EquipSecondaryWeapon(_weapon, false);
+    }
+
+    public static void EquipHat(Hat _hat, boolean _addToInv)
+    {
+        //TODO add database insert/updates
+        if(_addToInv)
+            AddToInventory(_hat);
+
         if(hat != null)
             inventory.add(hat);
 
         hat = _hat;
     }
 
-    public static void EquipShirt(Shirt _shirt)
+    public static void EquipHat(Hat _hat)
     {
+        EquipHat(_hat, false);
+    }
+
+    public static void EquipShirt(Shirt _shirt, boolean _addToInv)
+    {
+        //TODO add database insert/updates
+        if(_addToInv)
+            AddToInventory(_shirt);
+
         if(shirt != null)
             inventory.add(shirt);
 
         shirt = _shirt;
     }
 
-    public static void EquipPants(Pants _pants)
+    public static void EquipShirt(Shirt _shirt)
     {
+        EquipShirt(_shirt, false);
+    }
+
+    public static void EquipPants(Pants _pants, boolean _addToInv)
+    {
+        //TODO add database insert/updates
+        if(_addToInv)
+            AddToInventory(_pants);
+
         if(pants != null)
             inventory.add(pants);
 
         pants = _pants;
     }
 
-    public static void EquipBoots(Boots _boots)
+    public static void EquipPants(Pants _pants)
     {
+        EquipPants(_pants, false);
+    }
+
+    public static void EquipBoots(Boots _boots, boolean _addToInv)
+    {
+        //TODO add database insert/updates
+        if(_addToInv)
+            AddToInventory(_boots);
+
         if(boots != null)
             inventory.add(boots);
 
         boots = _boots;
+    }
+
+    public static void EquipBoots(Boots _boots)
+    {
+        EquipBoots(_boots, false);
     }
 
     public static void SetHD(A.eDice _dice)
@@ -425,5 +479,23 @@ public class Player
     public static A.eDice GetED()
     {
         return ED;
+    }
+
+    public static void AddToInventory(Item _item)
+    {
+        byte[] obj;
+        inventory.add(_item);
+        try
+        {
+            obj = UTIL.Serialize(_item);
+
+            DB.Insert("ITEM",
+                    new String[]{"ITEMID", "ITEM_TYPE", "EQUIPPED", "OBJECT"},
+                    new String[]{_item.GetId(), "" + A.GetItemTypeInt(_item.GetType()), "false", new String(obj)});
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
