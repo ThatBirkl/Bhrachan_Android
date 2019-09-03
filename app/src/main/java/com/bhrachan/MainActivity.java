@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity
         A.Init();
         DB.Init(this);
 
-        //TODO remove this again once the creation is complete
-        DB.Delete("CHARACTER", "CHARACTERID = 'test_id_replace'");
-        DB.Delete("SKILL", "1 = 1");
+        //UTIL.WipeDatabase();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -40,6 +38,8 @@ public class MainActivity extends AppCompatActivity
         else
         {
             btn_createChar.setVisibility(View.GONE);
+            Player.LoadCharacter();
+            MainActivity.this.startActivity(new Intent(MainActivity.this, CharacterActivity.class));
         }
 
 

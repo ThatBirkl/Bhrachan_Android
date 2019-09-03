@@ -211,6 +211,38 @@ public class A
         return ret;
     }
 
+    public static A.eRace GetRaceFromInt(int _race)
+    {
+        eRace ret = eRace.Avian;
+
+        switch (_race)
+        {
+            case 1:
+                ret = eRace.Centaur;
+                break;
+            case 2:
+                ret = eRace.Dwarf;
+                break;
+            case 3:
+                ret = eRace.Elf;
+                break;
+            case 4:
+                ret = eRace.Felin;
+                break;
+            case 5:
+                ret = eRace.Human;
+                break;
+            case 6:
+                ret = eRace.Lacertan;
+                break;
+            case 7:
+                ret = eRace.Orc;
+                break;
+        }
+
+        return ret;
+    }
+
     public static String GetItemArt(Item _item)
     {
         String ret = "";
@@ -253,7 +285,6 @@ public class A
         int ret = 0;
         switch (_dice)
         {
-
             case d1:
                 ret = 1;
                 break;
@@ -279,6 +310,41 @@ public class A
                 break;
             case d100:
                 ret = 100;
+                break;
+        }
+
+        return ret;
+    }
+
+    public static eDice GetDiceFromInt(int _dice)
+    {
+        eDice ret = eDice.d1;
+
+        switch (_dice)
+        {
+            case 2:
+                ret = eDice.d2;
+                break;
+            case 4:
+                ret = eDice.d4;
+                break;
+            case 6:
+                ret = eDice.d6;
+                break;
+            case 8:
+                ret = eDice.d8;
+                break;
+            case 10:
+                ret = eDice.d10;
+                break;
+            case 12:
+                ret = eDice.d12;
+                break;
+            case 20:
+                ret = eDice.d20;
+                break;
+            case 100:
+                ret = eDice.d100;
                 break;
         }
 
@@ -464,7 +530,6 @@ public class A
 
         switch(_itemType)
         {
-
             case item:
                 break;
             case resource:
@@ -481,7 +546,7 @@ public class A
         return ret;
     }
 
-    public static A.eItemType GetItemTypeFromInt(int _itemType)
+    public static eItemType GetItemTypeFromInt(int _itemType)
     {
         A.eItemType t = eItemType.item;
 
@@ -498,5 +563,10 @@ public class A
                 break;
         }
         return t;
+    }
+
+    public static eSkills[] GetCompleteSkillArray()
+    {
+        return eSkills.values();
     }
 }

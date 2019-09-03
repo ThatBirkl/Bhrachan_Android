@@ -1,6 +1,7 @@
 package com.bhrachan;
 
 import android.os.HardwarePropertiesManager;
+import android.util.Log;
 
 import com.bhrachan.Abilities.ActiveAbility;
 import com.bhrachan.Abilities.PassiveAbility;
@@ -31,6 +32,7 @@ public class Player
     private static A.eDice HD;
     private static A.eDice ED;
     private static A.eRace race;
+    private static int lvl;
 
     private static Map<A.eSkills, Integer> skillLvl;
     private static Map<A.eSkills, Float> skillProgress;
@@ -50,7 +52,7 @@ public class Player
 
     public static void Init()
     {
-        id = "test_id_replace"; //TODO UTIL.GetUUID();
+        id = UTIL.GetUUID();
         name = new String();
         HD = A.eDice.d8;
         ED = A.eDice.d6;
@@ -236,8 +238,8 @@ public class Player
             }
             else
             {
-                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + mainHand.GetId() + "'");
                 mainHand = _weapon;
+                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + mainHand.GetId() + "'");
             }
         }
     }
@@ -256,27 +258,43 @@ public class Player
         if(_weapon.IsTwoHanded())
         {
             if(mainHand != null)
+            {
                 inventory.add(mainHand);
+                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + mainHand.GetId() + "'");
+            }
 
             if(offHand != null)
+            {
                 inventory.add(offHand);
+                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + offHand.GetId() + "'");
+            }
 
             mainHand = _weapon;
             offHand = _weapon;
+            DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"true"}, "ITEMID = '" + _weapon.GetId() + "'");
+            DB.Update("CHARACTER", new String[]{"OFFHAND"}, new String[]{_weapon.GetId()}, "CHARACTERID = '" + id + "'");
         }
         else
         {
             if(offHand != null)
             {
+                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + offHand.GetId() + "'");
                 inventory.add(offHand);
-                offHand = _weapon;
+
 
                 if(offHand.IsTwoHanded())
+                {
                     mainHand = null;
+                    DB.Update("CHARACTER", new String[]{"MAINHAND"}, new String[]{null}, "CHARACTERID = '" + id + "'");
+                }
 
+
+                offHand = _weapon;
+                DB.Update("CHARACTER", new String[]{"OFFHAND"}, new String[]{_weapon.GetId()}, "CHARACTERID = '" + id + "'");
             }
             else
             {
+                DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + offHand.GetId() + "'");
                 offHand = _weapon;
             }
         }
@@ -289,14 +307,19 @@ public class Player
 
     public static void EquipHat(Hat _hat, boolean _addToInv)
     {
-        //TODO add database insert/updates
         if(_addToInv)
             AddToInventory(_hat);
 
         if(hat != null)
+        {
+            DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + hat.GetId() + "'");
             inventory.add(hat);
+        }
+
 
         hat = _hat;
+        DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"true"}, "ITEMID = '" + hat.GetId() + "'");
+        DB.Update("CHARACTER", new String[]{"MAINHAND"}, new String[]{hat.GetId()}, "CHARACTERID = '" + id + "'");
     }
 
     public static void EquipHat(Hat _hat)
@@ -306,14 +329,18 @@ public class Player
 
     public static void EquipShirt(Shirt _shirt, boolean _addToInv)
     {
-        //TODO add database insert/updates
         if(_addToInv)
             AddToInventory(_shirt);
 
         if(shirt != null)
+        {
+            DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + shirt.GetId() + "'");
             inventory.add(shirt);
+        }
 
         shirt = _shirt;
+        DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"true"}, "ITEMID = '" + shirt.GetId() + "'");
+        DB.Update("CHARACTER", new String[]{"MAINHAND"}, new String[]{shirt.GetId()}, "CHARACTERID = '" + id + "'");
     }
 
     public static void EquipShirt(Shirt _shirt)
@@ -323,14 +350,18 @@ public class Player
 
     public static void EquipPants(Pants _pants, boolean _addToInv)
     {
-        //TODO add database insert/updates
         if(_addToInv)
             AddToInventory(_pants);
 
         if(pants != null)
+        {
+            DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + pants.GetId() + "'");
             inventory.add(pants);
+        }
 
         pants = _pants;
+        DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"true"}, "ITEMID = '" + pants.GetId() + "'");
+        DB.Update("CHARACTER", new String[]{"MAINHAND"}, new String[]{pants.GetId()}, "CHARACTERID = '" + id + "'");
     }
 
     public static void EquipPants(Pants _pants)
@@ -340,14 +371,18 @@ public class Player
 
     public static void EquipBoots(Boots _boots, boolean _addToInv)
     {
-        //TODO add database insert/updates
         if(_addToInv)
             AddToInventory(_boots);
 
         if(boots != null)
+        {
+            DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"false"}, "ITEMID = '" + boots.GetId() + "'");
             inventory.add(boots);
+        }
 
         boots = _boots;
+        DB.Update("ITEM", new String[]{"EQUIPPED"}, new String[]{"true"}, "ITEMID = '" + boots.GetId() + "'");
+        DB.Update("CHARACTER", new String[]{"MAINHAND"}, new String[]{boots.GetId()}, "CHARACTERID = '" + id + "'");
     }
 
     public static void EquipBoots(Boots _boots)
@@ -496,6 +531,127 @@ public class Player
         catch (IOException e)
         {
             e.printStackTrace();
+        }
+    }
+
+    public static void LoadCharacter()
+    {
+        String[] character = DB.Table("select * from CHARACTER")[0];
+        id = character[0];
+        currentHP = UTIL.ParseInt(character[1]);
+        maxHP = UTIL.ParseInt(character[2]);
+        currentEnergy = UTIL.ParseInt(character[3]);
+        maxEnergy = UTIL.ParseInt(character[4]);
+        race = A.GetRaceFromInt(UTIL.ParseInt(character[5]));
+        name = character[6];
+        HD = A.GetDiceFromInt(UTIL.ParseInt(character[7]));
+        ED = A.GetDiceFromInt(UTIL.ParseInt(character[8]));
+        lvl = UTIL.ParseInt(character[15]);
+
+        String[][] dataTmp = DB.Table("select * from ITEM join CHARACTER on ITEMID = MAINHAND_ID where CHARACTERID = '" + id + "'");
+        String[] data;
+        if(dataTmp.length != 0)
+        {
+            data = dataTmp[0];
+            try {
+                mainHand = (Weapon)UTIL.Deserialize(data[3].getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                Log.e("Deserializing mainHand", e.getStackTrace().toString());
+            }
+        }
+
+
+        dataTmp = DB.Table("select * from ITEM join CHARACTER on ITEMID = OFFHAND_ID where CHARACTERID = '" + id + "'");
+        if(dataTmp.length != 0)
+        {
+            data = dataTmp[0];
+            try {
+                offHand = (Weapon)UTIL.Deserialize(data[3].getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                Log.e("Deserializing mainHand", e.getStackTrace().toString());
+            }
+        }
+
+
+        dataTmp = DB.Table("select * from ITEM join CHARACTER on ITEMID = HAT_ID where CHARACTERID = '" + id + "'");
+        if(dataTmp.length != 0)
+        {
+            data = dataTmp[0];
+            try {
+                hat = (Hat)UTIL.Deserialize(data[3].getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                Log.e("Deserializing mainHand", e.getStackTrace().toString());
+            }
+        }
+
+
+        dataTmp = DB.Table("select * from ITEM join CHARACTER on ITEMID = SHIRT_ID where CHARACTERID = '" + id + "'");
+        if(dataTmp.length != 0)
+        {
+            data = dataTmp[0];
+            try {
+                shirt = (Shirt)UTIL.Deserialize(data[3].getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                Log.e("Deserializing mainHand", e.getStackTrace().toString());
+            }
+        }
+
+
+        dataTmp = DB.Table("select * from ITEM join CHARACTER on ITEMID = PANTS_ID where CHARACTERID = '" + id + "'");
+        if(dataTmp.length != 0)
+        {
+            data = dataTmp[0];
+            try {
+                pants = (Pants)UTIL.Deserialize(data[3].getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                Log.e("Deserializing mainHand", e.getStackTrace().toString());
+            }
+        }
+
+
+        dataTmp = DB.Table("select * from ITEM join CHARACTER on ITEMID = BOOTS_ID where CHARACTERID = '" + id + "'");
+        if(dataTmp.length != 0)
+        {
+            data = dataTmp[0];
+            try {
+                boots = (Boots)UTIL.Deserialize(data[3].getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                Log.e("Deserializing mainHand", e.getStackTrace().toString());
+            }
+        }
+
+
+        LoadSkills();
+    }
+
+    private static void LoadSkills()
+    {
+        A.eSkills[] skills = A.GetCompleteSkillArray();
+
+        String[] data;
+        for(int i = 0; i < skills.length; i++)
+        {
+            data = DB.Table("select * from SKILL where SKILLID = " + A.GetSkillInt(skills[i]))[0];
+            skillLvl.put(skills[i], UTIL.ParseInt(data[2]));
+            skillProgress.put(skills[i], UTIL.ParseFloat(data[1]));
         }
     }
 }
