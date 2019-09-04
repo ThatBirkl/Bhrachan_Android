@@ -4,7 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.storage.StorageManager;
 import android.util.Log;
+
+import java.io.File;
 
 public class DB_Interface extends SQLiteOpenHelper
 {
@@ -33,13 +36,15 @@ public class DB_Interface extends SQLiteOpenHelper
 
     public boolean DatabaseExists()
     {
-        String path = "";
         return UTIL.FileExists(context.getDatabasePath(db_name).getPath());
     }
 
     public void CreateDatabase()
     {
+        Log.e("EXISTS ?", "" + UTIL.FileExists(context.getDatabasePath(db_name).getPath()));
+
         db = SQLiteDatabase.openOrCreateDatabase(context.getDatabasePath(db_name).getPath(), null);
+
 
         db.execSQL("create table CHARACTER\n" +
                 "(\n" +

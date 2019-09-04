@@ -401,7 +401,7 @@ public class A
             case Staff:
                 ret = 14;
                 break;
-            case Instincts:
+            case Pickpocketing:
                 ret = 15;
                 break;
             case Lockpicking:
@@ -487,7 +487,7 @@ public class A
                 ret = eSkills.Staff;
                 break;
             case 15:
-                ret = eSkills.Instincts;
+                ret = eSkills.Pickpocketing;
                 break;
             case 16:
                 ret = eSkills.Lockpicking;
