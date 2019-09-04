@@ -1,5 +1,6 @@
 package com.bhrachan.Items;
 
+import com.bhrachan.A;
 import com.bhrachan.Abilities.ActiveAbility;
 import com.bhrachan.Abilities.PassiveAbility;
 
@@ -17,6 +18,7 @@ public abstract class Clothing extends Equipment
         AC = _AC;
         passiveAbilities = _passiveAbilities;
         activeAbilities = _activeAbilities;
+        type = A.eItemType.clothing;
     }
 
     public int GetAC()

@@ -1,5 +1,7 @@
 package com.bhrachan;
 
+import android.util.Log;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -55,5 +57,45 @@ public class UTIL
         ByteArrayInputStream in = new ByteArrayInputStream(data);
         ObjectInputStream is = new ObjectInputStream(in);
         return is.readObject();
+    }
+
+    public static void WipeDatabase()
+    {
+        DB.Delete("CHARACTER", "1=1");
+        DB.Delete("SKILL", "1=1");
+        DB.Delete("ITEM", "1=1");
+        DB.Delete("CHARACTER_DEAD", "1=1");
+    }
+
+    public static int ParseInt(String _value)
+    {
+        int i = 0;
+        try
+        {
+            i = Integer.parseInt(_value);
+        }
+        catch(NumberFormatException ex)
+        {
+            i = -1;
+            ex.printStackTrace();
+            Log.e("NumberFormatException", ex.getStackTrace().toString());
+        }
+        return i;
+    }
+
+    public static float ParseFloat(String _value)
+    {
+        float i = 0;
+        try
+        {
+            i = Float.parseFloat(_value);
+        }
+        catch(NumberFormatException ex)
+        {
+            i = -1;
+            ex.printStackTrace();
+            Log.e("NumberFormatException", ex.getStackTrace().toString());
+        }
+        return i;
     }
 }

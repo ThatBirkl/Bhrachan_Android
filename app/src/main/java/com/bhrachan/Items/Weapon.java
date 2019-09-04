@@ -24,6 +24,7 @@ public abstract class Weapon extends Equipment
         damageDice = _dice;
         numDice = _numDice;
         addDamage = _addDamage;
+        type = A.eItemType.weapon;
     }
 
     public Weapon(String _name, String _description, A.eDice _dice, int _numDice)
