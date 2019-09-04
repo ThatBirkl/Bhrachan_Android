@@ -28,7 +28,7 @@ public class A
         Axe,
         Shield,
         Staff,
-        Instincts,
+        Pickpocketing,
         Lockpicking,
         Cooking,
         Alchemy,
