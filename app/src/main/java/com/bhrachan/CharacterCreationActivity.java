@@ -69,7 +69,7 @@ public class CharacterCreationActivity extends AppCompatActivity
         if(((CheckBox)findViewById(R.id.chk_skill_instant)).isChecked())
             Player.IncrementSkillLevel(A.eSkills.Instantanious);
         if(((CheckBox)findViewById(R.id.chk_skill_instincts)).isChecked())
-            Player.IncrementSkillLevel(A.eSkills.Instincts);
+            Player.IncrementSkillLevel(A.eSkills.Pickpocketing);
         if(((CheckBox)findViewById(R.id.chk_skill_lockpicking)).isChecked())
             Player.IncrementSkillLevel(A.eSkills.Lockpicking);
         if(((CheckBox)findViewById(R.id.chk_skill_lore)).isChecked())
@@ -221,7 +221,7 @@ public class CharacterCreationActivity extends AppCompatActivity
 
         statements[10][0][0] = "SKILL";
         statements[10][1] = columns;
-        statements[10][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Instincts), "" + Player.GetSkill(A.eSkills.Instincts), "" + Player.GetSkill(A.eSkills.Instincts)};
+        statements[10][2] = new String[]{"" + A.GetSkillInt(A.eSkills.Pickpocketing), "" + Player.GetSkill(A.eSkills.Pickpocketing), "" + Player.GetSkill(A.eSkills.Pickpocketing)};
 
 
         statements[11][0][0] = "SKILL";

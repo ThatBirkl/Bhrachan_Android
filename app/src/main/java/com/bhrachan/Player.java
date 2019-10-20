@@ -77,7 +77,7 @@ public class Player
         skillLvl.put(A.eSkills.Fauna, 0);
         skillLvl.put(A.eSkills.Flora, 0);
         skillLvl.put(A.eSkills.Instantanious, 0);
-        skillLvl.put(A.eSkills.Instincts, 0);
+        skillLvl.put(A.eSkills.Pickpocketing, 0);
         skillLvl.put(A.eSkills.Intelligence, 0);
         skillLvl.put(A.eSkills.Lockpicking, 0);
         skillLvl.put(A.eSkills.Lore, 0);
@@ -105,7 +105,7 @@ public class Player
         skillProgress.put(A.eSkills.Fauna, 0f);
         skillProgress.put(A.eSkills.Flora, 0f);
         skillProgress.put(A.eSkills.Instantanious, 0f);
-        skillProgress.put(A.eSkills.Instincts, 0f);
+        skillProgress.put(A.eSkills.Pickpocketing, 0f);
         skillProgress.put(A.eSkills.Intelligence, 0f);
         skillProgress.put(A.eSkills.Lockpicking, 0f);
         skillProgress.put(A.eSkills.Lore, 0f);
