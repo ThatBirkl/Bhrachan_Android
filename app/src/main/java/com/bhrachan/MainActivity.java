@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity
         A.Init();
         DB.Init(this);
 
-        //UTIL.WipeDatabase();
+        //wUTIL.WipeDatabase();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

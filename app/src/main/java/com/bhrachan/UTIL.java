@@ -98,4 +98,54 @@ public class UTIL
         }
         return i;
     }
+
+    public static String BytesToHexString(byte[] _bytes)
+    {
+        String ret = new String();
+
+        for(int i = 0 ; i < _bytes.length; i++)
+        {
+            ret += ByteToHex(_bytes[i]);
+        }
+
+        return ret;
+    }
+
+    private static String ByteToHex(byte _byte)
+    {
+        char[] hexDigits = new char[2];
+        hexDigits[0] = Character.forDigit((_byte >> 4) & 0xF, 16);
+        hexDigits[1] = Character.forDigit((_byte & 0xF), 16);
+
+        return new String(hexDigits);
+    }
+
+    public static byte[] HexStringToBytes(String _hex)
+    {
+        char[] hexChars = _hex.toCharArray();
+        byte[] bytes = new byte[hexChars.length / 2];
+
+        for(int i = 0 ; i < hexChars.length; i = i + 2)
+        {
+            bytes[i / 2] = CharsToByte(hexChars[i], hexChars[i + 1]);
+        }
+
+        return bytes;
+    }
+
+    private static byte CharsToByte(char _char1, char _char2)
+    {
+        int firstDigit = toDigit(_char1);
+        int secondDigit = toDigit(_char2);
+        return (byte) ((firstDigit << 4) + secondDigit);
+    }
+
+    private static int toDigit(char hexChar)
+    {
+        int digit = Character.digit(hexChar, 16);
+        if (digit == -1) {
+            throw new IllegalArgumentException("Invalid Hexadecimal Character: " + hexChar);
+        }
+        return digit;
+    }
 }

@@ -569,4 +569,15 @@ public class A
     {
         return eSkills.values();
     }
+
+    public static String ArrayToString(String[] _arr)
+    {
+        String ret = "";
+
+        for(int i = 0; i < _arr.length; i++)
+        {
+            ret += " [->] " + _arr[i] + " ";
+        }
+        return ret;
+    }
 }

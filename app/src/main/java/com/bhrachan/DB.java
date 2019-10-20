@@ -27,7 +27,10 @@ public class DB
         else
         {
             helper.OpenDatabase();
+            //helper.DropTables();
+            //helper.CreateTables();
         }
+
     }
 
     public static void Insert(String _tableName, String[] _columns, String[] _values)
@@ -78,6 +81,12 @@ public class DB
                 }
             }
         }
+        if(_tableName.equals("CHARACTER"))
+            for(int i = 0 ; i < ret.length; i++)
+            {
+                Log.e("COL " + i, _columns[i] + " : " + ret[i]);
+            }
+
         return ret;
     }
 
@@ -103,11 +112,13 @@ public class DB
 
         String command = "update " + _tableName + "\n" +
                         "set ";
-        for(int i = 0 ; i < _columns.length - 1; i++)
+        for(int i = 0 ; i < _columns.length - 2; i++)
         {
+            Log.e("TYPE", types[i]);
             command += _columns[i] + " = CAST('" + _values[i] + "' as " + types[i] + "),\n";
         }
         command += _columns[_columns.length - 1] + " = CAST('" + _values[_columns.length - 1] + "' as " + types[_columns.length - 1] + ")\n";
+        Log.e("TYPE", types[_columns.length - 1]);
         command += "where " + _condition;
 
         helper.Execute(command);

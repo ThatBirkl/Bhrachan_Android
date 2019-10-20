@@ -33,14 +33,17 @@ public class DB_Interface extends SQLiteOpenHelper
 
     public boolean DatabaseExists()
     {
-        String path = "";
         return UTIL.FileExists(context.getDatabasePath(db_name).getPath());
     }
 
     public void CreateDatabase()
     {
         db = SQLiteDatabase.openOrCreateDatabase(context.getDatabasePath(db_name).getPath(), null);
+        CreateTables();
+    }
 
+    public void CreateTables()
+    {
         db.execSQL("create table CHARACTER\n" +
                 "(\n" +
                 "  CHARACTERID TEXT(36) NOT NULL PRIMARY KEY,\n" +
@@ -80,8 +83,16 @@ public class DB_Interface extends SQLiteOpenHelper
                 "  ITEMID TEXT(36) NOT NULL PRIMARY KEY,\n" +
                 "  ITEM_TYPE INTEGER NOT NULL,\n" +
                 "  EQUIPPED BOOLEAN NOT NULL,\n" +
-                "  OBJECT BLOB NOT NULL\n" +
+                "  OBJECT TEXT NOT NULL\n" + //is stored as hex string
                 ")");
+    }
+
+    public void DropTables()
+    {
+        Execute("drop table CHARACTER");
+        Execute("drop table CHARACTER_DEAD");
+        Execute("drop table SKILL");
+        Execute("drop table ITEM");
     }
 
     public void Execute(String _command)
@@ -97,7 +108,6 @@ public class DB_Interface extends SQLiteOpenHelper
         {
             for(int row = 0 ; row < ret.length; row++)
             {
-
                 for(int column = 0 ; column < ret[row].length; column++)
                 {
                     ret[row][column] = c.getString(column);
